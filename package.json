@@ -16,7 +16,6 @@
   "homepage": "https://github.com/kendagriff/massive-demo",
   "dependencies": {
     "body-parser": "^1.13.3",
-    "cors": "^2.7.1",
     "express": "^4.13.3",
     "massive": "^4.6.3"
   }
