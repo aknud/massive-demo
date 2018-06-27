@@ -20,24 +20,25 @@ var port = 3000;
 const getConn = (req) => req.app.get('db');
 
 const severityIndex = {
-  'low': function(db) {
+  'low': function (db) {
     return db.getMildInjuries;
   },
-  'high': function(db) {
+  'high': function (db) {
     return db.getSevereInjuries;
   },
-  'all': function(db) {
+  'all': function (db) {
     return db.getAllInjuries;
   }
 }
 
 app.get('/injuries', (req, res) => {
   severityIndex[req.query.severity || 'all'](getConn(req))()
-  .then(injuries => res.send(injuries))
+    .then(injuries => res.send(injuries))
 })
 
 app.get('/incidents', (req, res) => {
-  req.app.get('db').getAllIncidents().then(incidents => {
+  var tth = req.query.tth;
+  req.app.get('db').getAllIncidents([tth]).then(incidents => {
     res.send(incidents);
   });
 });
